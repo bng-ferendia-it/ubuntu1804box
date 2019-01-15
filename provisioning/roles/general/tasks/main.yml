@@ -1,0 +1,38 @@
+---
+- name: generate the server locale
+  locale_gen: name={{ locale }} state=present
+
+- name: set locale
+  lineinfile: > 
+     dest=/etc/default/locale 
+     regexp='^LANG={{ locale }}' 
+     line='LANG={{ locale }}'
+     create=yes 
+     state=present
+
+- name: reload locale
+  raw: . /etc/default/locale
+
+- name: install git
+  include_tasks: git.yml
+
+- name: install unzip and curl
+  become: true
+  apt: 
+     name:
+       - unzip
+       - curl
+     update_cache: yes
+     state: latest
+
+- name: install apache2
+  include_tasks: apache.yml
+
+- name: install php7.2 with mysql, git
+  include_tasks: php.yml
+
+- name: install mongodb
+  include_tasks: mongo.yml
+
+- name: install composer
+  include_tasks: composer.yml

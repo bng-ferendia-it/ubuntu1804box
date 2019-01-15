@@ -1,0 +1,8 @@
+# Install composer
+---
+- name: install composer
+  become: true
+  apt: >
+     name=composer
+     update_cache=yes
+     state=latest
