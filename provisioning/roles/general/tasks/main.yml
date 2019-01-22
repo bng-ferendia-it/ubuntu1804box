@@ -36,3 +36,6 @@
 
 - name: install composer
   include_tasks: composer.yml
+
+- name: install node and npm
+  include_tasks: nodejs.yml

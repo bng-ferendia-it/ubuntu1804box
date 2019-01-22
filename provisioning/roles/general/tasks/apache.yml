@@ -3,3 +3,7 @@
   apt: name=apache2 update_cache=yes state=latest
 - name: install libphp
   apt: name=libapache2-mod-php
+- name: Enable rewrite module
+  apache2_module:
+    name: rewrite
+    state: present
