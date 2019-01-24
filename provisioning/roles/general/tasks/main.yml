@@ -34,6 +34,9 @@
 - name: install mongodb
   include_tasks: mongo.yml
 
+- name: install mysql
+  include_tasks: mysql.yml
+
 - name: install composer
   include_tasks: composer.yml
 

@@ -1,0 +1,16 @@
+# Install mysql
+---
+- name: Install mysql
+  become: true
+  apt: 
+    name: 
+        - mariadb-server
+        - mariadb-client
+    state: latest 
+    update_cache: yes
+- name: Start the MySQL service
+  become: true
+  service: 
+    name: mariadb 
+    state: started
+    enabled: true
