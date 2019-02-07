@@ -1,0 +1,29 @@
+# apache_listen_ip: "*"
+# apache_listen_port: 80
+# apache_listen_port_ssl: 443
+# apache_create_vhosts: true
+# apache_vhosts_filename: "crm.local.conf"
+# apache_remove_default_vhost: false
+
+# apache_vhosts:
+#   - servername: "crm.local"
+#     serveralias: "www.crm.local"
+#     documentroot: "/var/www/crm/web"
+#     apache_allow_override: "All"
+
+#     extra_parameters: |
+#       <FilesMatch \.php$>
+#         SetHandler proxy:unix:/var/run/php/php7.2-fpm.sock|fcgi://dummy
+#       </FilesMatch>
+
+#       ErrorLog /var/log/apache2/crm_error.log
+#       CustomLog /var/log/apache2/crm_access.log combined
+
+#   - servername: "crm-frontend.local"
+#     serveralias: "www.crm-frontend.local"
+#     documentroot: "/var/www/crm/frontend/dist"
+#     apache_allow_override: "All"
+
+#     extra_parameters: |
+#       ErrorLog /var/log/apache2/crm_fe_error.log
+#       CustomLog /var/log/apache2/crm_fe_access.log combined

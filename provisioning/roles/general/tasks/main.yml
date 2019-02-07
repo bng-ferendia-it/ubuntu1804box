@@ -30,6 +30,8 @@
 
 - name: install php7.2 with mysql, git
   include_tasks: php.yml
+  notify:
+     - restart apache
 
 - name: install mongodb
   include_tasks: mongo.yml
@@ -42,3 +44,6 @@
 
 - name: install node and npm
   include_tasks: nodejs.yml
+
+- name: instal yarn
+  include_tasks: yarn.yml

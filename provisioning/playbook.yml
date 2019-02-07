@@ -2,5 +2,49 @@
 
 - hosts: all
   become: true
+
+  pre_tasks:
+    - name: Ensure package database is up-to-date
+      apt:
+        update-cache: true
+      failed_when: false
+      changed_when: false
+      when: ansible_os_family == 'Debian'
+  vars_files:
+    - vars/samba.yml
+    - vars/apache.yml
+  tasks:
+    - name: Set write permissions on /var/www
+      file:
+        path: /var/www
+        state: directory
+        owner: vagrant
+        group: www-data
+        mode: 0775
+
+    - name: Create docroot for the project
+      file:
+        path: /var/www/htdocs
+        state: directory
+        owner: vagrant
+        group: www-data
+        mode: 0775
+
+    - name: Make user vagrant member of group www-data
+      user: name=vagrant
+            group=www-data
+            state=present
+
   roles:
     - general
+    - role: bertvv.samba
+
+  handlers:
+    - name: restart apache
+      become: true
+      systemd:
+        name: apache2
+        daemon_reload: yes
+        state: restarted
+
+

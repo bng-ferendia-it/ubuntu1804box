@@ -1,0 +1,38 @@
+samba_users:
+  - name: vagrant
+    password: vagrant
+
+samba_shares_root: /var
+
+samba_shares:
+  - name: www
+    comment: 'Sources share for the project'
+    group: vagrant
+    write_list: vagrant
+    read_only: no
+    create_mode: '0775'
+    directory_mode: '0775'
+    force_directory_mode: '0775'
+
+samba_packages:
+  - samba-common
+  - samba
+  - samba-client
+
+samba_vfs_packages:
+  - samba-vfs-modules
+
+samba_selinux_packages: []
+samba_selinux_booleans: []
+
+samba_configuration_dir: /etc/samba
+samba_configuration: "{{ samba_configuration_dir }}/smb.conf"
+samba_username_map_file: "{{ samba_configuration_dir }}/smbusers"
+
+# The name of the Samba service in older releases (Ubuntu 14.04,
+# Debian <8) is "samba".
+samba_services:
+  - smbd
+  - nmbd
+
+samba_www_documentroot: /var/www
