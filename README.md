@@ -8,7 +8,7 @@ If you provision the box on Linux, than it will default to the HOST machine Ansi
 Steps: 
 
 1. make a development directory where you intend to work on your project
-2. go to that diorectory and git clone this repe in there
+2. go to that directory and git clone this repo in there
 3. vagrant up --provision
 4. vagrant ssh gets you into the box if needed. you are now in /vagrant directory
 4. you will have a "htdocs" directory after the box starts on your HOST machine
